@@ -7,39 +7,18 @@ let sizeView = 'm';
 // Get file-names from file "img" and store the values in "pictures". (if possible & how?)
 getImages();
 
-// Function render() executes on load of the body
-function render() {
-    let gallery = document.getElementById('gallery');
+// HTML templates
 
-    // clear inner HTML
-    gallery.innerHTML = '';
-
-    // iterate through "pictures" and generate HTML
-    for (let i = 0; i < pictures.length; i++) {
-        // function pictureBoxTemplate()
-        gallery.innerHTML += /*html*/ `
+function pictureBoxTemplate(i) {
+    return /*html*/ `
         <div class="picture-box">
             <img src="${pictures[i]}" alt="" class="gallery-picture ${sizeView}" onclick="openPictureView(${i})" >
         </div>
-        `;
-    }
+    `;
 }
 
-// vorläufige Funktion zum ausprobieren (later: get img names from folder if possible?)
-function getImages() {
-    for (let i = 1; i < 28; i++) {
-        pictures.push(`img/gallery/${i}.jpg`);
-    }
-}
-
-// open picture (and gallery-view)
-function openPictureView(i) {
-    let bg = document.getElementById('overlay');
-    // show Overlay
-    overlay.classList.remove('toggle-element');
-
-    // generate HTML --> function galleryViewTemplate()
-    overlay.innerHTML = /*html*/ `
+function galleryViewTemplate(i) {
+    return /*html*/ `
         <div class="overlay-card">
             <img onclick="previousPicture(${i})" class="icon" src="img/arrow-left.png" alt="next picture icon" id="previous">
             <img class="" src="${pictures[i]}" alt="" id="picture">
@@ -51,6 +30,33 @@ function openPictureView(i) {
             <img onclick="galleryPlayForward(${i+1})" class="icon" src="img/play-forwards.png" alt="play gallery forward button">
         </div>
     `;
+}
+
+// Function render() executes on load of the body
+function render() {
+    let gallery = document.getElementById('gallery');
+    // clear inner HTML
+    gallery.innerHTML = '';
+    // iterate through "pictures" and generate HTML
+    for (let i = 0; i < pictures.length; i++) {
+        gallery.innerHTML += pictureBoxTemplate(i);
+    }
+}
+
+// get pictures from folder "gallery" and save them in array "pictures"
+// (because of laziness: pictures in gallery folder are named 1 - n.png. r.n.)
+function getImages() {
+    for (let i = 1; i < 28; i++) {
+        pictures.push(`img/gallery/${i}.jpg`);
+    }
+}
+
+// open picture (and gallery-view)
+function openPictureView(i) {
+    let bg = document.getElementById('overlay');
+    // show overlay
+    overlay.classList.remove('toggle-element');
+    overlay.innerHTML = galleryViewTemplate(i);
 }
 
 function closePictureView() {
@@ -67,8 +73,8 @@ function changeImgSize(size) {
 }
 
 function nextPicture(i) {
-    // stop propagation? prevent click event from outer/parent element to take place (close overlay)
-    if (event) { // event: bei click-event übergeben, aber bei automatischem Aufruf der Funktion nicht
+    // stop propagation--> prevent click event from outer/parent element to take place (close overlay)
+    if (event) { // event: bei click-event übergeben, aber zB bei callback Aufruf der Funktion nicht
         event.stopPropagation(); //"event is deprecated", but what would be the alternative? 
         // Solution: https://stackoverflow.com/questions/58341832/event-is-deprecated-what-should-be-used-instead addEventListener() Funktion zu einem spezifischen Element hinzufügen und event-Parameter übergeben.
     }
@@ -79,7 +85,7 @@ function nextPicture(i) {
     } else {
         i++;
     }
-    openPictureView(i); // Prf? Da overlay auch wieder wieder bearbeitet wird (classList.add etc. zum Einblenden) in zwei Funktionen unterteilen?
+    openPictureView(i);
     return i;
 }
 
@@ -124,9 +130,17 @@ function galleryPlayBackward(i) {
 
 function stopGalleryRun() {
     // prevent click-event from overlay
-    event.stopPropagation(),
+    event.stopPropagation();
     //clear interval
     window.clearInterval(galleryInterval);
 }
 
-// ToDo: Denglisch beheben, Kommentare, aufräumen
+function setActiveLink(x){
+    let links = document.getElementsByClassName('resize-link');
+
+    for(let i =0; i< links.length; i++) {
+        links[i].classList.remove('active-link');
+    }
+
+    links[x].classList.add('active-link');
+}
