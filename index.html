@@ -29,9 +29,9 @@
         <span class="nav-logo">&lt;Fotoalbum&gt;</span>
       </div>
       <div class="nav-container">
-        <a class="resize-link" onclick="changeImgSize('s')" href="#">S</a>
-        <a class="resize-link" onclick="changeImgSize('m')" href="#">M</a>
-        <a class="resize-link" onclick="changeImgSize('l')" href="#">L</a>
+        <a class="resize-link" onclick="changeImgSize('s'), setActiveLink(0)" href="#">S</a>
+        <a class="resize-link" onclick="changeImgSize('m'), setActiveLink(1)" href="#">M</a>
+        <a class="resize-link" onclick="changeImgSize('l'), setActiveLink(2)" href="#">L</a>
         <a onclick="galleryPlayForward()" href="#">Galerie</a>
       </div>
     </nav>
