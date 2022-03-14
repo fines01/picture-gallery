@@ -78,7 +78,6 @@ function nextPicture(i) {
         event.stopPropagation(); //"event is deprecated", but what would be the alternative? 
         // Solution: https://stackoverflow.com/questions/58341832/event-is-deprecated-what-should-be-used-instead addEventListener() Funktion zu einem spezifischen Element hinzufügen und event-Parameter übergeben.
     }
-
     // open next picture
     if (i >= pictures.length - 1) {
         i = 0;
@@ -109,7 +108,6 @@ function galleryPlayForward(i = 0) {
     stopGalleryRun();
     // open selected target image (default = 0)
     openPictureView(i);
-
     galleryInterval = setInterval(
         function () {
             i = nextPicture(i); // i as updated and returned from function "nextPicture()"
@@ -120,7 +118,6 @@ function galleryPlayBackward(i) {
     event.stopPropagation();
     stopGalleryRun();
     openPictureView(i);
-
     // set interval and assign it to a variable so that it can be targeted (&cleared) later 
     galleryInterval = setInterval(
         function () {
@@ -137,10 +134,27 @@ function stopGalleryRun() {
 
 function setActiveLink(x){
     let links = document.getElementsByClassName('resize-link');
-
     for(let i =0; i< links.length; i++) {
         links[i].classList.remove('active-link');
     }
-
     links[x].classList.add('active-link');
 }
+
+// JavaScript media queries
+
+// create conditions that target certain viewports
+let mediaQueryS = window.matchMedia('(max-width: 800px)');
+let mediaQueryM = window.matchMedia('(max-width: 1100px)');
+//let mediaQueryL = window.matchMedia('(min-width: 1300px)');
+// add event listeners with callback
+mediaQueryS.addEventListener('change', function() {
+     if (mediaQueryS.matches) {
+         setActiveLink(0);
+         changeImgSize('s');
+     } 
+     else if (mediaQueryM.matches) {
+        setActiveLink(1);
+        changeImgSize('m');
+    } 
+});
+// Problem: changes only on resize, not as soon as opened on spec device
