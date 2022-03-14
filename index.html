@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotoalbum</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Nunito&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</head>
+
+<body onload="render()">
+    
+    <!-- Body-content container to help keep the footer in place -->
+    <div class="body-content">
+
+    <!-- Colored transparent overlay for background -->
+    <div class="background-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <span class="nav-logo">&lt;Fotoalbum&gt;</span>
+      </div>
+      <div class="nav-container">
+        <a class="resize-link" onclick="changeImgSize('s')" href="#">S</a>
+        <a class="resize-link" onclick="changeImgSize('m')" href="#">M</a>
+        <a class="resize-link" onclick="changeImgSize('l')" href="#">L</a>
+        <a onclick="galleryPlayForward()" href="#">Galerie</a>
+      </div>
+    </nav>
+    <!-- END Navigation -->
+
+    <!-- Gallery Section -->
+    <div class="gallery-container" id="gallery"></div>
+
+    <!-- Overlay -->
+    <div class="toggle-element" id="overlay" onclick="closePictureView()"></div>
+
+    </div>
+    <!-- END: body-content -->
+    <!-- Footer? -->
+    <footer id="info">
+        <span>&copy; i.f. 2022</span> 
+        <a href="#">Kontakt</a> 
+        <a href="#">Info</a>
+    </footer>
+
+</body>
+</html>

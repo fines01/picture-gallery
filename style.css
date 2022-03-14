@@ -1,0 +1,197 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Noto Sans', sans-serif;
+    color: #444444;
+    /* background-color: #efefef; */
+    background-image: url('img/bg.jpg');
+    background-size: cover;
+    position: relative; /* wg footer*/
+    min-height: 100vh;
+}
+
+/* NAVBAR */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    background-color: black;
+    box-shadow: 0px 2px 13px -5px rgb(109, 109, 236);
+    /* https://cssgenerator.org/box-shadow-css-generator.html*/
+    padding: 24px;
+
+}
+
+nav a {
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 16px;
+    margin-right: 16px;
+    color: inherit;
+    /* color von body*/
+    transition: transform 0.33s, color 0.33s; /* all? */
+    /* transition: font-size 0.33s; */
+}
+
+nav a:hover,
+.active-link {
+    color: rgb(170, 170, 238);
+    font-weight: 900;
+    /*transform: scale(1.2); /* geht nicht? */
+    /*font-size: 1.3em; /* nicht flüssig; transition: font-size 0.33s */
+}
+
+.nav-logo {
+    font-weight: bold;
+    color: rgb(170, 170, 238);
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+/* Image Gallery */
+
+/* Idealerweise keine  grösseren Lücken zw Bildern. Siehe Pixabay, Unsplash 
+/* --> benutzen allerdings grid-system
+/*  Bilder passe sich v Größe automatisch an etc. 
+/* ? Bessere Lösung mit Flexbox? */
+
+.gallery-container {
+    margin: 64px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.gallery-picture{
+    margin: 8px 4px;
+    object-fit:cover;
+    border-radius: 5px;
+}
+
+/* Height Classes for changing size- views */
+.s {
+    height: 100px;
+}
+
+.m {
+    height: 150px;
+}
+
+.l {
+    height: 250px;
+}
+
+.picture-box {
+    /* padding: 4px 2px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4px;
+    background-color: white;
+    border-radius: 5px;
+    transition: transform 0.33s; /* transform flüssiger ablaufen lassen*/
+}
+
+.picture-box:hover {
+    transform: scale(1.04);
+}
+
+.toggle-element {
+    display: none !important;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: rgba(1,1,1,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.overlay-card {
+    background-color: white;
+    padding:16px 24px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    z-index: 1000;
+}
+
+.overlay-card img {
+    border-radius: 4px;
+    max-height: 80vh;
+}
+
+.icon {
+    height: 32px;
+    transition: transform 0.33s;
+    padding:2px;
+}
+
+.icon:hover{
+    transform: scale(1.5);
+    background-color: rgb(230, 228, 228, 0.3);
+    border-radius: 15%;
+}
+
+.control-buttons{
+    margin-top: 32px;
+}
+
+.control-buttons img {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+/* transparent colored bg - layer over background picture (Test) */
+.background-overlay {
+    background-color: rgba(53, 87, 107, 0.4);
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left:0;
+    right:0;
+    z-index: -1;
+}
+
+/* Footer - Hilfscontainer "body-content" */
+.body-content {
+    padding-bottom: 80px;
+}
+
+/* FOOTER */
+
+footer {
+    height: 32px;
+    padding: 24px;
+    /* display: flex; */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background-color: #d3ded3;
+    box-shadow: 0px 3px 20px -5px blue;
+    ;
+}
+
+footer a {
+    text-decoration: none;
+    color: inherit;
+    margin: 8px;
+}
+
+footer a:hover {
+    color: black;
+}
