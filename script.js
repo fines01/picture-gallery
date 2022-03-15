@@ -140,6 +140,11 @@ function setActiveLink(x){
     links[x].classList.add('active-link');
 }
 
+function toggleMenu() {
+    let navbar = document.getElementById('navbar');
+    navbar.classList.toggle('show-responsive-menu');
+}
+
 // JavaScript media queries
 
 // create conditions that target certain viewports
@@ -158,3 +163,4 @@ mediaQueryS.addEventListener('change', function() {
     } 
 });
 // Problem: changes only on resize, not as soon as opened on spec device
+
