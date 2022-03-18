@@ -81,16 +81,17 @@ nav a:hover,
 
 .s {
     height: 100px;
-    max-width: 90vw;
+    width: 150px;
 }
 
 .m {
     height: 150px;
-    max-width: 90vw;
+    width: 225px;
 }
 
 .l {
     height: 250px;
+    width: 375px;
     max-width: 90vw;
 }
 
@@ -217,21 +218,25 @@ footer a:hover {
 
     .s {
         height: 90px;
+        width: 135px;
         max-width: 80vw;
     }
 
     .m {
         height: 130px;
+        width: 195px;
         max-width: 80vw;
     }
 
     .l {
         height: 200px;
+        width: 300px;
         max-width: 80vw;
     }
 
     .gallery-container {
         margin: 32px;
+        justify-content: center;
     }
 
     .overlay-card img {
