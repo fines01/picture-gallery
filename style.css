@@ -70,13 +70,14 @@ nav a:hover,
     margin: 64px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .gallery-picture{
     margin: 8px 4px;
     object-fit:cover;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .s {
@@ -236,7 +237,6 @@ footer a:hover {
 
     .gallery-container {
         margin: 32px;
-        justify-content: center;
     }
 
     .overlay-card img {
