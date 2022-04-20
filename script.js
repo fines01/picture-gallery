@@ -20,14 +20,14 @@ function pictureBoxTemplate(i) {
 function galleryViewTemplate(i) {
     return /*html*/ `
         <div class="overlay-card">
-            <img onclick="previousPicture(${i})" class="icon" src="img/arrow-left.png" alt="next picture icon" id="previous">
+            <img onclick="previousPicture(${i})" class="icon" src="img/arrow-left.png" alt="previous picture icon" id="previous">
             <img class="" src="${pictures[i]}" alt="" id="picture">
-            <img onclick="nextPicture(${i})" class="icon" src="img/arrow-right.png" alt="previous picture icon" id="next">
+            <img onclick="nextPicture(${i})" class="icon" src="img/arrow-right.png" alt="next picture icon" id="next">
         </div>
         <div class="control-buttons">
-            <img onclick="galleryPlayBackward(${i-1})" class="icon" src="img/play-backwards.png" alt="play gallery backwards button">
-            <img onclick="stopGalleryRun()" class="icon" src="img/square.png" alt="stop gallery btuuon">
-            <img onclick="galleryPlayForward(${i+1})" class="icon" src="img/play-forwards.png" alt="play gallery forward button">
+            <img onclick="diashowBackwards(${i-1})" class="icon" src="img/play-backwards.png" alt="play gallery backwards button">
+            <img onclick="stopDiashow()" class="icon" src="img/square.png" alt="stop gallery button">
+            <img onclick="diashowForwards(${i+1})" class="icon" src="img/play-forwards.png" alt="play gallery forward button">
         </div>
     `;
 }
@@ -61,7 +61,7 @@ function openPictureView(i) {
 
 function closePictureView() {
     document.getElementById('overlay').classList.add('toggle-element');
-    stopGalleryRun();
+    stopDiashow();
 }
 
 // Change size - view
@@ -75,7 +75,7 @@ function changeImgSize(size) {
 function nextPicture(i) {
     // stop propagation--> prevent click event from outer/parent element to take place (close overlay)
     if (event) { // event: bei click-event übergeben, aber zB bei callback Aufruf der Funktion nicht
-        event.stopPropagation(); //"event is deprecated", but what would be the alternative? 
+        event.stopPropagation(); //"event is deprecated", alternative? 
         // Solution: https://stackoverflow.com/questions/58341832/event-is-deprecated-what-should-be-used-instead addEventListener() Funktion zu einem spezifischen Element hinzufügen und event-Parameter übergeben.
     }
     // open next picture
@@ -102,21 +102,21 @@ function previousPicture(i) {
     return i;
 }
 
-function galleryPlayForward(i = 0) {
+function diashowForwards(i = 0) {
     event.stopPropagation();
     // only one interval should be running at a time, stop intervals that are already running.
-    stopGalleryRun();
+    stopDiashow();
     // open selected target image (default = 0)
     openPictureView(i);
     galleryInterval = setInterval(
         function () {
-            i = nextPicture(i); // i as updated and returned from function "nextPicture()"
+            i = nextPicture(i); // 
         } ,2000);
 }
 
-function galleryPlayBackward(i) {
+function diashowBackwards(i) {
     event.stopPropagation();
-    stopGalleryRun();
+    stopDiashow();
     openPictureView(i);
     // set interval and assign it to a variable so that it can be targeted (&cleared) later 
     galleryInterval = setInterval(
@@ -125,7 +125,7 @@ function galleryPlayBackward(i) {
         }, 2000);
 }
 
-function stopGalleryRun() {
+function stopDiashow() {
     // prevent click-event from overlay
     event.stopPropagation();
     //clear interval
@@ -162,5 +162,5 @@ mediaQueryS.addEventListener('change', function() {
         changeImgSize('m');
     } 
 });
-// Problem: changes only on resize, not as soon as opened on spec device
+// Problem: changes only on resize
 
